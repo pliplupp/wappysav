@@ -45,7 +45,7 @@ jobs:
         path: ${{github.workspace}}/build
         name: "windows-x86_64"
 
-  build-mac:
+  build-mac-old:
 
     runs-on: macos-latest
 
@@ -56,7 +56,7 @@ jobs:
       uses: jurplel/install-qt-action@v3
       with:
         aqtversion: '==3.1.*'
-        version: '5.9.0'
+        version: '5.*.*'
         host: 'mac'
         target: 'desktop'
         arch: 'clang_64'         
@@ -64,7 +64,7 @@ jobs:
     - name: qmake
    
       working-directory: ${{github.workspace}}
-      run: qmake -makefile
+      run: qmake -makefile QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64"
       
     - name: make
       working-directory: ${{github.workspace}}
@@ -79,9 +79,43 @@ jobs:
       
       with:
         path: ${{github.workspace}}/build
-        name: "macos-x64"
+        name: "macos-universal-qt5"
 
+   build-mac:
 
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
+      with:
+        aqtversion: '==3.1.*'
+        version: '6.10.2'
+        host: 'mac'
+        target: 'desktop'
+        arch: 'clang_64'         
+        
+    - name: qmake
+   
+      working-directory: ${{github.workspace}}
+      run: qmake -makefile QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64"
+      
+    - name: make
+      working-directory: ${{github.workspace}}
+
+      run: make
+    - name: deploy
+      working-directory: ${{github.workspace}}/build/Release
+      run: macdeployqt wappysav.app
+
+    - name: upload
+      uses: actions/upload-artifact@v6.0.0
+      
+      with:
+        path: ${{github.workspace}}/build
+        name: "macos-universal-qt6"
       
 
       
