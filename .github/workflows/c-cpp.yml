@@ -79,7 +79,7 @@ jobs:
       
       with:
         path: ${{github.workspace}}/build
-        name: "macos-universal-qt5"
+        name: "macos-x86_64-qt5"
 
   build-mac:
 
