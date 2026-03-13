@@ -147,13 +147,13 @@ jobs:
 
       run: |
         make -j4
-        make install
+        sudo make install
      
     - name: Build AppImage
       uses: Kidev/Qt-AppImage@v0.0.8
       id: "appimage"
       with:
-        install_folder: /usr/local/bin/wappysav      
+        install_folder: /usr/local/bin/wappysav/      
     - name: upload
       uses: actions/upload-artifact@v6.0.0
       
