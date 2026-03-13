@@ -43,6 +43,7 @@ jobs:
       
       with:
         path: ${{github.workspace}}/build
+        name: "windows-x86_64"
 
   build-mac:
 
@@ -71,7 +72,7 @@ jobs:
       run: make
     - name: deploy
       working-directory: ${{github.workspace}}/build/Release
-      run: macdeployqt ./
+      run: macdeployqt wappysav.app
 
     - name: upload
       uses: actions/upload-artifact@v6.0.0
