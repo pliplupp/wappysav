@@ -142,14 +142,20 @@ jobs:
 
       run: |
         make -j4
+        make install
      
-      
+    - name: Build AppImage
+      run: |
+        wget --no-verbose "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
+        wget --no-verbose "https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage"
+        chmod +x linuxdeploy*.AppImage
+        /linuxdeploy-x86_64.AppImage --appdir AppDir --custom-apprun=dist/linux/AppRun --exclude-library "*libpython3*" --plugin qt --output appimage
 
     - name: upload
       uses: actions/upload-artifact@v6.0.0
       
       with:
-        path: ${{github.workspace}}/build
+        path: wappysav_Linux_x86_64.AppImage
         name: "linux-x86_64"
       
       

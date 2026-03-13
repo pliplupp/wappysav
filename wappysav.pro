@@ -21,4 +21,25 @@ RC_FILE += res.rc
 HEADERS +=  mainwindow.h save_proc.h save_proc.c
 FORMS += encryptwindow.ui info.ui mainwindow.ui
 SOURCES += main.cpp mainwindow.cpp save_proc.c
-ICON += appico.icns
+mac {
+    ICON += appico.icns
+    TARGET = WappySav
+}
+
+unix {
+    isEmpty(PREFIX) {
+        PREFIX = /usr/local
+    }
+
+    target.path = $$PREFIX/bin
+
+    shortcutfiles.files = misc/wappysav.desktop
+    shortcutfiles.path = $$PREFIX/share/applications/
+    
+    data.path = $$PREFIX/share/pixmaps/
+
+    INSTALLS += shortcutfiles
+    INSTALLS += data
+}
+
+INSTALLS += target
