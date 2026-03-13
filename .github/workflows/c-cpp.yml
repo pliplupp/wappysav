@@ -116,6 +116,51 @@ jobs:
       with:
         path: ${{github.workspace}}/build
         name: "macos-universal-qt6"
+  build-linux-x86:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
+      with:
+        aqtversion: '==3.1.*'
+        version: '6.10.2'
+        host: 'linux'
+        target: 'desktop'
+        arch: 'linux_gcc_64'        
+        
+    - name: qmake
+   
+      working-directory: ${{github.workspace}}
+      run: qmake -makefile
+      
+    - name: make
+      working-directory: ${{github.workspace}}
+
+      run: |
+        make
+        make install
+     
+      
+    - name: deploy
+      id: "deploy"
+      uses: Kidev/Qt-AppImage@v0.0.8
+      with:
+      # Path to folder where Qt installed your project
+        install_folder: ./install
+        app_name: WappySav
+     
+        icon: ${{github.workspace}}/appico.ico
+    - name: upload
+      uses: actions/upload-artifact@v6.0.0
+      
+      with:
+        path: ${{ steps.deploy.outputs.appimage }}
+        name: "macos-universal-qt6"
+      
       
 
       
