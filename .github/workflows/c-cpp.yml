@@ -148,6 +148,7 @@ jobs:
       run: |
         make -j4
         sudo make install
+        ls -R
      
     - name: Install LinuxDeployQt
       uses: Fryy55/install-linuxdeployqt-action@v1.0.0
@@ -155,13 +156,13 @@ jobs:
 
     - name: Deploy
       working-directory: ${{github.workspace}}
-      run: linuxdeployqt ./bin/wappysav
+      run: linuxdeployqt ./bin/wappysav/ --appimage
    
     - name: upload
       uses: actions/upload-artifact@v6.0.0
       
       with:
-        path: ${{github.workspace}}/bin
+        path: ${{github.workspace}}/share/applications/misc/wappysav.desktop
         name: "linux-x86_64"
       
       
