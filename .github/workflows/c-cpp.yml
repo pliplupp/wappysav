@@ -64,7 +64,7 @@ jobs:
     - name: qmake
    
       working-directory: ${{github.workspace}}
-      run: qmake -makefile QMAKE_APPLE_DEVICE_ARCHS="x86_64 arm64"
+      run: qmake -makefile 
       
     - name: make
       working-directory: ${{github.workspace}}
