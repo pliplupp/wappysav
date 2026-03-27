@@ -43,7 +43,7 @@ jobs:
       
       with:
         path: ${{github.workspace}}/build
-        name: "windows-x86_64"
+        name: "wappysav-windows-x86_64"
 
   build-mac-old:
 
@@ -79,7 +79,7 @@ jobs:
       
       with:
         path: ${{github.workspace}}/build
-        name: "macos-x86_64-qt5"
+        name: "wappysav-macos-x86_64-qt5"
 
   build-mac:
 
@@ -115,7 +115,7 @@ jobs:
       
       with:
         path: ${{github.workspace}}/build
-        name: "macos-universal-qt6"
+        name: "wappysav-macos-universal-qt6"
   build-linux:
 
     runs-on: ubuntu-22.04
@@ -168,8 +168,8 @@ jobs:
       uses: actions/upload-artifact@v6.0.0
       
       with:
-        path: ${{github.workspace}}/AppDir/
-        name: "linux-x86_64"
+        path: ${{github.workspace}}/*.AppImage
+        name: "wappysav-linux-x86_64"
       
       
 
