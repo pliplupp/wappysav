@@ -37,7 +37,7 @@ unix {
     shortcutfiles.path = $$PREFIX/share/applications/
 
     data.files = appico.svg
-    data.path = $$PREFIX/share/icons/
+    data.path = $$PREFIX/share/icons/hicolor/scalable/
     
 
     INSTALLS += shortcutfiles
