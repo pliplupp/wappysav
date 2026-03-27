@@ -141,7 +141,10 @@ jobs:
           libzstd-dev \
           zlib1g-dev
 
-    
+    - name: Setup ccache
+      uses: hendrikmuhs/ccache-action@v1
+      with:
+        max-size: 250M
 
     - name: Install Qt
       uses: jurplel/install-qt-action@v3
