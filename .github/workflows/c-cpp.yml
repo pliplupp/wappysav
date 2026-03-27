@@ -139,7 +139,8 @@ jobs:
           libxcursor-dev \
           libxi-dev \
           libzstd-dev \
-          zlib1g-dev
+          zlib1g-dev \
+          libxcb-cursor0
 
     - name: Setup ccache
       uses: hendrikmuhs/ccache-action@v1
