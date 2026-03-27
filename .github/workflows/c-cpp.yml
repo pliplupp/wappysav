@@ -150,17 +150,18 @@ jobs:
         sudo make install
         ls -R
      
-    - name: AppImageTool deployment
-      run: |
-        sudo add-apt-repository universe
-        sudo apt install libfuse2
-        wget -O appimage-builder-x86_64.AppImage https://github.com/AppImageCrafters/appimage-builder/releases/download/v1.1.0/appimage-builder-1.1.0-x86_64.AppImage
-        chmod +x appimage-builder-x86_64.AppImage
-        sudo mv appimage-builder-x86_64.AppImage /usr/local/bin/appimage-builder
-        export QT_PLUGIN_PATH=/home/runner/work/wappysav/Qt/6.10.2/gcc_64/plugins
-        sudo cp -a /home/runner/work/wappysav/Qt/6.10.2/gcc_64/lib/ ${{github.workspace}}/AppDir/usr/lib
-        cd ${{github.workspace}} && sudo appimage-builder --recipe AppImageBuilder.yml
      
+    - name: Build AppImage
+      run: |
+        wget --no-verbose "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
+        wget --no-verbose "https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage"
+        chmod +x linuxdeploy*.AppImage
+        export EXTRA_QT_PLUGINS=svg
+        export LD_LIBRARY_PATH=${QT_ROOT_DIR}/lib:$PWD/AppDir/usr/lib
+        export OUTPUT=wappysav_Linux_x86_64.AppImage
+        # Avoid shipping the debug information
+        find AppDir -name \*.debug -delete
+        ./linuxdeploy-x86_64.AppImage --appdir AppDir --custom-apprun=dist/linux/AppRun --exclude-library "*libpython3*" --plugin qt --output appimage
   
 
 
