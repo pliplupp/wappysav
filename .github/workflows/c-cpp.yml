@@ -150,7 +150,10 @@ jobs:
         version: '6.10.2'
         host: 'linux'
         target: 'desktop'
-        arch: 'linux_gcc_64'        
+        arch: 'linux_gcc_64'   
+        tools: 'tools_qtcreator'
+        setup-python: false
+        cache: true 
         
     - name: qmake
    
