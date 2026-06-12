@@ -18,7 +18,7 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
-        version: "6.10.2"
+        version: "6.11"
         arch: "win64_mingw"
         tools: 'tools_mingw1310'
 
@@ -92,7 +92,7 @@ jobs:
       uses: jurplel/install-qt-action@v3
       with:
         aqtversion: '==3.1.*'
-        version: '6.10.2'
+        version: '6.11'
         host: 'mac'
         target: 'desktop'
         arch: 'clang_64'         
@@ -120,7 +120,7 @@ jobs:
 
     runs-on: ubuntu-22.04
     env:
-      QT_VERSION: 6.10.2
+      QT_VERSION: 6.11
       BUILD_DIR: build
 
     steps:
@@ -151,7 +151,7 @@ jobs:
       uses: jurplel/install-qt-action@v3
       with:
         aqtversion: '==3.1.*'
-        version: '6.10.2'
+        version: '6.11'
         host: 'linux'
         target: 'desktop'
         arch: 'linux_gcc_64'   
