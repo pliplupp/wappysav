@@ -18,7 +18,7 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
-        version: "6.11"
+        version: "6.11.1"
         arch: "win64_mingw"
         tools: 'tools_mingw1310'
 
@@ -92,7 +92,7 @@ jobs:
       uses: jurplel/install-qt-action@v3
       with:
         aqtversion: '==3.1.*'
-        version: '6.11'
+        version: '6.11.1'
         host: 'mac'
         target: 'desktop'
         arch: 'clang_64'         
@@ -151,7 +151,7 @@ jobs:
       uses: jurplel/install-qt-action@v3
       with:
         aqtversion: '==3.1.*'
-        version: '6.11'
+        version: '6.11.1'
         host: 'linux'
         target: 'desktop'
         arch: 'linux_gcc_64'   
